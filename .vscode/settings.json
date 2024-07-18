@@ -73,5 +73,10 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#023245",
+    "titleBar.activeBackground": "#034561",
+    "titleBar.activeForeground": "#F4FCFF"
+  }
 }
