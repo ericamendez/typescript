@@ -44,6 +44,16 @@ printCar({
 })
 
 //* Excess property checking
+/**
+ printCar({
+  make: 'Tesla',
+  model: 'Model 3',
+  year: 2020,
+  color: 'RED', //? EXTRA PROPERTY
+})
+
+Typescript did not like this because the `color` property is not defined in the type of the `printCar` function. This is called excess property checking.
+ */
 
 const myArg = {
   make: 'Tesla',
@@ -52,26 +62,31 @@ const myArg = {
   color: 'RED', //? EXTRA PROPERTY
 }
 
-printCar()
+printCar(myArg)
 
-/*
+// This is a way to get around the excess property checking. It's not recommended because it's not type-safe.
+// Typescript doesnt perform excess property checking on objects that are first assigned to a variable.
+// It just checks that the object has the required properties.
+
 //* Index signatures
 
 //? Dictionary of phone #s
-// const phones = {
-//     home: { country: "+1", area: "211", number: "652-4515" },
-//     work: { country: "+1", area: "670", number: "752-5856" },
-//     fax: { country: "+1", area: "322", number: "525-4357" },
-// }
-/*
+const phones: {
+  [k: string]:
+    | {
+        country: string
+        area: string
+        number: string
+      }
+    | undefined
+} = {
+  home: { country: '+1', area: '211', number: '652-4515' },
+  work: { country: '+1', area: '670', number: '752-5856' },
+  fax: { country: '+1', area: '322', number: '525-4357' },
+}
+
 //? Model as an index signature
-// const phones: {
-//     [k: string]: {
-//         country: string
-//         area: string
-//         number: string
-//     }
-// } = {}
+// Any property key of type string will have a value specified by the type { country: string, area: string, number: string }
 
 //*  Array Types
 
