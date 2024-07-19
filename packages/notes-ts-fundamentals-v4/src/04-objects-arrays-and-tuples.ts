@@ -85,65 +85,70 @@ const phones: {
   fax: { country: '+1', area: '322', number: '525-4357' },
 }
 
+
 //? Model as an index signature
 // Any property key of type string will have a value specified by the type { country: string, area: string, number: string }
 
 //*  Array Types
 
-/*
-// const fileExtensions = ["js", "ts"]
-//        ^? string[]
 
-// const cars = [ //? Let's look at an array of objects
-//     {
-//         make: "Toyota",
-//         model: "Corolla",
-//         year: 2002,
-//     },
-// ]
+const fileExtensions = ["js", "ts"]
+//        ^? string[]   can also do this Array<string> but <> will clash with JSX
+
+const cars = [ //? Let's look at an array of objects
+    {
+        make: "Toyota",
+        model: "Corolla",
+        year: 2002,
+    },
+]
+
+// TypeScript infers the type of the cars array based on the objects inside it.
 
 
 //* Tuples
-/*
-// let myCar = [
-//     2002,     // Year
-//     "Toyota", // Make
-//     "Corolla" // Model
-// ]
-// const [year, make, model] = myCar //✔️ Destructuring
+
+let myCar2 = [
+    2002,     // Year
+    "Toyota", // Make
+    "Corolla" // Model
+]
+const [year, make, model] = myCar2 //✔️ Destructuring
 
 //? Inference doesn't work very well for tuples
-/*
-// myCar = ["Honda", 2017, "Accord", "Sedan"] //! Wrong convention
-/*
-// let myCar: [number, string, string] = [
-//     2002,
-//     "Toyota",
-//     "Corolla",
-// ]
-// myCar = ["Honda", 2017, "Accord"] //! Wrong convention
-// myCar = [2017, "Honda", "Accord", "Sedan"] //! Too many elements
+
+myCar2 = ["Honda", 2017, "Accord", "Sedan"] //! Wrong convention
+
+let myCar3: [number, string, string] = [
+    2002,
+    "Toyota",
+    "Corolla",
+]
+// myCar3 = ["Honda", 2017, "Accord"] //! Wrong convention
+// myCar3 = [2017, "Honda", "Accord", "Sedan"] //! Too many elements
 
 
 //*  `readonly` tuples
-/*
-// const numPair: [number, number] = [4, 5]; //✔️ Valid
-// const numTriplet: [number, number, number] = [7]; //! Invalid
 
-// [101, 102, 103].length //? number[].length
-// numPair.length //? [number, number] length
+const numPair: [number, number] = [4, 5]; //✔️ Valid
+const numTriplet: [number, number, number] = [7]; //! Invalid
 
-// numPair.push(6) // [4, 5, 6]
-// numPair.pop() // [4, 5]
-// numPair.pop() // [4]
-// numPair.pop() // []
+[101, 102, 103].length //? number[].length
+numPair.length //? [number, number] length
 
-// numPair.length  //! ❌ DANGER ❌
+numPair.push(6) // [4, 5, 6]
+numPair.pop() // [4, 5]
+numPair.pop() // [4]
+numPair.pop() // []
 
-// const roNumPair: readonly [number, number] = [4, 5]
-// roNumPair.length
-// roNumPair.push(6) // [4, 5, 6] //! Not allowed
-// roNumPair.pop() // [4, 5] //! Not allowed
+numPair.length  //! ❌ DANGER ❌
+
+const roNumPair: readonly [number, number] = [4, 5]
+roNumPair.length
+roNumPair.push(6) // [4, 5, 6] //! Not allowed
+roNumPair.pop() // [4, 5] //! Not allowed
+
+let twoDArray: string[][] = [['a', 'b'], ['c', 'd']]
 
 /**/
 
