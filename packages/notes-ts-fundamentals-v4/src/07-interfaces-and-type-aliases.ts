@@ -148,64 +148,64 @@ class Dog2
 }
 
 //? Implements sometimes works with type aliases
-/*
-// type CanJump = {
-//     jumpToHeight(): number
-//         // | [number, number]
-// }
-// class Dog3 implements CanJump {
-//     jumpToHeight() {
-//         return 1.7
-//     }
-//     eat(food) {
-//         consumeFood(food)
-//     }
-// }
 
-// type CanBark =
-//   | number
-//   | {
-//       bark(): string
-//     }
+type CanJump = {
+  jumpToHeight(): number
+  // | [number, number]
+}
+class Dog3 implements CanJump {
+  jumpToHeight() {
+    return 1.7
+  }
+  eat(food) {
+    consumeFood(food)
+  }
+}
+
+type CanBark =
+  | number
+  | {
+      bark(): string
+    }
 
 //* Open interfaces
 
-/*
-// function feed(animal: AnimalLike) {
-//     animal.eat
-//     animal.isAlive
-// }
-/*
-// interface AnimalLike { //✔️ Additional declaration is OK
-//     isAlive(): boolean
-// }
+function feed(animal: AnimalLike) {
+  if (animal.isAlive()) {
+    animal.eat('food')
+  }
+  // animal.eat
+  // animal.isAlive
+}
+
+interface AnimalLike {
+  //✔️ Additional declaration is OK
+  isAlive(): boolean
+}
 
 //* Use case: augmenting existing types
 
-/*
-// window.document // an existing property
-// //      ^? (property) document: Document
-// window.exampleProperty = 42
-// //      ^? (property) exampleProperty: number
+window.document // an existing property
+//      ^? (property) document: Document
+window.exampleProperty = 42
+//      ^? (property) exampleProperty: number
 
-/*
-//// tells TS that `exampleProperty` exists
-// declare global {
-//     interface Window {
-//     exampleProperty: number
-//     }
-// }
+// tells TS that `exampleProperty` exists
+declare global {
+  interface Window {
+    exampleProperty: number
+  }
+}
 
 //* Recursive types
-/*
-// type NestedNumbers = number | NestedNumbers[]
- 
-// const val: NestedNumbers = [3, 4, [5, 6, [7], 59], 221]
-/*
-// if (typeof val !== "number") {
-//   val.push(41)
-//   val.push("this will not work") //! No strings allowed
-// }
 
-/**/
+type NestedNumbers = number | NestedNumbers[]
+
+const val: NestedNumbers = [3, 4, [5, 6, [7], 59], 221]
+
+if (typeof val !== 'number') {
+  val.push(41)
+  val.push('this will not work') //! No strings allowed
+}
+
 export default {}
