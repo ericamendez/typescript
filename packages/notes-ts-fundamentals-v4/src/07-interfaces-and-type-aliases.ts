@@ -205,6 +205,7 @@ const val: NestedNumbers = [3, 4, [5, 6, [7], 59], 221]
 
 if (typeof val !== 'number') {
   val.push(41)
+  val.push(1, [3, 5, [22, 5]], 7)
   val.push('this will not work') //! No strings allowed
 }
 
